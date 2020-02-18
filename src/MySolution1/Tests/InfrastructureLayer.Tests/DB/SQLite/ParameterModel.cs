@@ -66,19 +66,19 @@ namespace InfrastructureLayer.Tests.DB.SQLite
             // TODO: テスト ロジックをここに追加してください
             //
 
+            bool ret = true;
             try
             {
 
                 // DBファイルチェック->存在すれば削除
-                if (System.IO.File.Exists("*.db"))
+                if (System.IO.File.Exists("test.db"))
                 {
-                    System.IO.File.Delete("*.db");
-                    Console.WriteLine(".db ファイルを削除");
+                    System.IO.File.Delete("test.db");
+                    Console.WriteLine("test.db ファイルを削除");
                 }
 
                 // モデルをインスタンス化
-                string t = DateTime.Now.ToString("yyyyMMddHHmmss");
-                InfrastructureLayer.DB.SQLite.Model.ParameterModel parameterModel = new InfrastructureLayer.DB.SQLite.Model.ParameterModel("test." + t);
+                InfrastructureLayer.DB.SQLite.Model.ParameterModel parameterModel = new InfrastructureLayer.DB.SQLite.Model.ParameterModel("test");
 
                 // テーブル作成
                 parameterModel.CreateTable();
@@ -93,30 +93,15 @@ namespace InfrastructureLayer.Tests.DB.SQLite
                 parameterModel.Insert(e[0]);
                 parameterModel.Insert(e[1]);
                 parameterModel.Insert(e[2]);
-                Console.WriteLine("Success: Data INSERT ");
 
-                // 更新
-                Parameter upd_p = new Parameter();
-                upd_p.Key = "visible";
-                upd_p.Value = "false";
-                parameterModel.Update(upd_p);
-                Console.WriteLine("Success: Data UPDATE ");
 
-                // 検索
-                Parameter[] get_parameter = parameterModel.Select<Parameter>("");
-                foreach (var item in get_parameter)
-                {
-                    Console.WriteLine("Id = {0}, Key = {1}, Value = {2}, Description = {3}", item.Id, item.Key, item.Value, item.Description);
-                }
-
-                // 削除
-                parameterModel.DropTable();
-                Console.WriteLine("Success: DropTable() ");
+                ret = true;
 
             }
             catch (Exception ex )
             {
                 Console.Write("Error: " + ex.Message);
+                ret = false;
             }
             
             // 結果

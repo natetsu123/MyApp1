@@ -1,5 +1,5 @@
 # TODO
 
 
-* Parameter ã® slect ã‚’å®Œäº†ã™ã‚‹
+* Parameter ‚Ì Update ,  slect ‚ğŠ®—¹‚·‚é
 
