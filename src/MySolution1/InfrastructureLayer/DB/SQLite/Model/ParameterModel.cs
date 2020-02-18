@@ -98,7 +98,7 @@ namespace InfrastructureLayer.DB.SQLite.Model
         /// </summary>
         /// <param name="whereStatement">検索条件</param>
         /// <returns>True:成功／False:失敗</returns>
-        public override object[] Select(string whereStatement)
+        public new Entity.Parameter[] Select<Parameter>(string whereStatement)
         {
             //SQL
             var sql = new System.Text.StringBuilder();
@@ -112,18 +112,19 @@ namespace InfrastructureLayer.DB.SQLite.Model
                 try
                 {
                     Entity.Parameter[] p = new Entity.Parameter[] { };
-                    int iCount;
-                    iCount = 0;
+                    int iCount = 0;
                     using (var reader = db.ExecuteQuery(sql.ToString()))
                     {
                         while (reader.Read())
                         {
-                            Array.Resize(ref p, iCount);
-                            
-                            p[iCount].Id = (int)reader["id"];
-                            p[iCount].Key = reader["key"].ToString();
-                            p[iCount].Value = reader["valuie"].ToString();
-                            p[iCount].Description = reader["description"].ToString();
+                            Array.Resize(ref p, iCount + 1 );
+                            p[iCount] =new Entity.Parameter()
+                            {
+                                Id = Convert.ToInt32(reader["id"]),
+                                Key = reader["key"].ToString(),
+                                Value = reader["value"].ToString(),
+                                Description = reader["description"].ToString()
+                            };
                             iCount += 1;
                         }
                     }
@@ -169,6 +170,36 @@ namespace InfrastructureLayer.DB.SQLite.Model
             return ret;
         }
 
+        public bool Update(Parameter p)
+        {
+            // 変数
+            var ret = true;
+            var param = EntityToDictionary(p);
+
+            // SQL
+            var sql = new System.Text.StringBuilder();
+            sql.Append("UPDATE Parameter SET ");
+            sql.Append("    value = @Value ");
+            sql.Append("   ,description = @Description ");
+            sql.Append(" WHERE key = @Key ");
+
+
+            // 実行
+            using (var db = new Manager(connectionString))
+            {
+                try
+                {
+                    db.ExecuteNonQuery(sql.ToString(), param);
+                    ret = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                    ret = false;
+                }
+            }
+            return ret;
+        }
 
         /// <summary>
         /// Parameter Entity を Dictionary 形式へ変換

@@ -28,28 +28,28 @@ namespace InfrastructureLayer.DB.BaseClass
         /// </summary>
         /// <param name="paramDict">検索条件</param>
         /// <returns>Entityクラス</returns>
-        public virtual object[] Select(string whereStatement) { return null; }
+        public virtual T[] Select<T>(string whereStatement) { return default(T[]); }
 
         /// <summary>
         /// データ挿入
         /// </summary>
         /// <param name="obj">Entityクラス</param>
         /// <returns>True:成功／False:失敗</returns>
-        public virtual bool Insert(object obj) { return false; }
+        public virtual bool Insert<T>(ref T obj) { return false; }
 
         /// <summary>
         /// データ更新
         /// </summary>
         /// <param name="obj">Entityクラス</param>
         /// <returns>True:成功／False:失敗</returns>
-        public virtual bool Update(object obj) { return false; }
+        public virtual bool Update<T>(ref T obj) { return false; }
 
         /// <summary>
         /// データ削除
         /// </summary>
         /// <param name="obj">Entityクラス</param>
         /// <returns>True:成功／False:失敗</returns>
-        public virtual bool Delete(object obj) { return false; }
+        public virtual bool Delete<T>(ref T obj) { return false; }
 
         /// <summary>
         /// データ一括削除
