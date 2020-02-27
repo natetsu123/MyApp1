@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace FormsApp1.App
+namespace FormApp1.App
 {
     public class Logger
     {

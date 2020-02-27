@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FormsApp1
+namespace FormApp1
 {
     public partial class Form1 : Form
     {

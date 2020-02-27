@@ -2,7 +2,7 @@
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FormsApp1.Tests.App
+namespace FormApp1.Tests.App
 {
     [TestClass]
     public class LoggerTest
@@ -10,7 +10,7 @@ namespace FormsApp1.Tests.App
         [TestMethod]
         public void LoggerTestUTF8()
         {
-            var Logger = new FormsApp1.App.Logger(System.Environment.CurrentDirectory, Encoding.UTF8);
+            var Logger = new FormApp1.App.Logger(System.Environment.CurrentDirectory, Encoding.UTF8);
             bool ret = false;
             try
             { 

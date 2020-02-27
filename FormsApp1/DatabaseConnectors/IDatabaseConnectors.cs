@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FormsApp1.DatabaseConnectors
+namespace FormApp1.DatabaseConnectors
 {
     interface IDatabaseConnectors<Reader> : IDisposable
     {

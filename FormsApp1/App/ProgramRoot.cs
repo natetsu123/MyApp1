@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FormsApp1
+namespace FormApp1
 {
     static class ProgramRoot
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FormsApp1.Properties
+namespace FormApp1.Properties
 {
 
 

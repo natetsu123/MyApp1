@@ -1,4 +1,4 @@
-﻿namespace FormsApp1
+﻿namespace FormApp1
 {
     partial class Form1
     {

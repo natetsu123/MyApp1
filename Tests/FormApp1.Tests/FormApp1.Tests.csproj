@@ -50,16 +50,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App\LoggerTest.cs" />
-    <Compile Include="Model\AppConfigModelTests.cs" />
+    <Compile Include="Entity\AppConfigEntityTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FormsApp1\FormsApp1.csproj">
+    <ProjectReference Include="..\..\FormsApp1\FormApp1.csproj">
       <Project>{2b5dfd27-e7ba-43bd-9295-ff7f273c840d}</Project>
-      <Name>FormsApp1</Name>
+      <Name>FormApp1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

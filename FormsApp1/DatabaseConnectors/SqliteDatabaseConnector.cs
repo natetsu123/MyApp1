@@ -2,7 +2,7 @@
 using System.Data.SQLite;
 using System.Collections.Generic;
 
-namespace FormsApp1.DatabaseConnectors
+namespace FormApp1.DatabaseConnectors
 {
     public class SqliteDatabaseConnector : IDatabaseConnectors<SQLiteDataReader>, IDisposable
     {

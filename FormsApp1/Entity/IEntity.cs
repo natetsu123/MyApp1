@@ -1,14 +1,25 @@
-﻿using System;
+﻿using FormApp1.DatabaseConnectors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FormsApp1.Entity
+namespace FormApp1.Entity
 {
-    public interface IEntity
+    interface IEntity<obj, DataBase> : IDisposable
     {
-        Dictionary<string, object> ToDictionary();
-        string ToStringData();
+        string TableName { get; }
+        void Database(DataBase db);
+
+        bool CreateTable();
+        bool DropTable();
+
+        obj[] Select();
+        bool Insert(obj entity);
+        bool Update(obj entity);
+        bool Delete(obj entity);
+        bool Truncate();
+        
     }
 }
