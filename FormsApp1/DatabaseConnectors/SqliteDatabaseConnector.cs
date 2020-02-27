@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FormsApp1.DatabaseConnectors
 {
-    class SqliteDatabaseConnector : IDatabaseConnectors<SQLiteDataReader>, IDisposable
+    public class SqliteDatabaseConnector : IDatabaseConnectors<SQLiteDataReader>, IDisposable
     {
         private SQLiteConnection _SQLiteConnection;
         private SQLiteTransaction _SQLiteTransaction;
@@ -80,7 +80,8 @@ namespace FormsApp1.DatabaseConnectors
                 cmd.Transaction = _SQLiteTransaction;
                 foreach (KeyValuePair<string, object> item in keyValuePairs)
                 {
-                    cmd.Parameters.Add(new SQLiteParameter(item.Key, item.Value));
+                    if ( query.IndexOf(item.Key) > 0 ) 
+                        cmd.Parameters.Add(new SQLiteParameter(item.Key, item.Value));
                 }
                 cmd.CommandText = query;
                 cmd.ExecuteNonQuery();
@@ -99,7 +100,8 @@ namespace FormsApp1.DatabaseConnectors
                 cmd.Transaction = this._SQLiteTransaction;
                 foreach (KeyValuePair<string, object> item in keyValuePairs)
                 {
-                    cmd.Parameters.Add(new SQLiteParameter(item.Key, item.Value));
+                    if (query.IndexOf(item.Key) > 0)
+                        cmd.Parameters.Add(new SQLiteParameter(item.Key, item.Value));
                 }
                 cmd.CommandText = query;
                 reader = cmd.ExecuteReader();

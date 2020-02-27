@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace FormsApp1.DatabaseConnectors
 {
-    interface IDatabaseConnectors<T> : IDisposable
+    interface IDatabaseConnectors<Reader> : IDisposable
     {
-        T ExecuteQuery(string query);
-        T ExecuteQuery(string query, Dictionary<string, object> keyValuePairs);
+        Reader ExecuteQuery(string query);
+        Reader ExecuteQuery(string query, Dictionary<string, object> keyValuePairs);
         void ExecuteNonQuery(string query);
         void ExecuteNonQuery(string query, Dictionary<string, object> keyValuePairs);
         void Initialize();

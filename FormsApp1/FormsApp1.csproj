@@ -51,8 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App\Logger.cs" />
     <Compile Include="DatabaseConnectors\IDatabaseConnectors.cs" />
     <Compile Include="DatabaseConnectors\SqliteDatabaseConnector.cs" />
+    <Compile Include="DatabaseConnectors\SqliteDatabaseInfo.cs" />
+    <Compile Include="Entity\AppConfig.cs" />
+    <Compile Include="Entity\IEntity.cs" />
+    <Compile Include="Model\IModel.cs" />
+    <Compile Include="Model\AppConfigModel.cs" />
     <Compile Include="UI\Form\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
