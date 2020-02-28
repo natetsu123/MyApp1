@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace FormApp1.Entity
 {
-    interface IEntity<obj, DataBase> : IDisposable
+    interface IEntity<obj, DataBase, ColumnInfo> : IDisposable
     {
         string TableName { get; }
         void Database(DataBase db);
+        ColumnInfo[] Column();
 
         bool CreateTable();
         bool DropTable();

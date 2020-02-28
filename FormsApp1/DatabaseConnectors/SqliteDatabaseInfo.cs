@@ -23,6 +23,7 @@ namespace FormApp1.DatabaseConnectors
 
     public class SqliteColumnInfo
     {
+        public int Order { get; set; }
         public string ColumnName { get; set; }
         public SqliteColumnDataTypeEnum Type { get; set; }
         public Boolean NotNull { get; set; }

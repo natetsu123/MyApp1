@@ -39,14 +39,23 @@ namespace FormApp1.Entity
     }
 
 
-    public class AppConfigEntity : IEntity<AppConfig, SqliteDatabaseInfo>, IDisposable
+    public class AppConfigEntity : IEntity<AppConfig, SqliteDatabaseInfo, SqliteColumnInfo>, IDisposable
     {
 
         readonly App.Logger Logger = new App.Logger(System.Environment.CurrentDirectory, Encoding.UTF8);
 
         internal SqliteDatabaseConnector DbConnector { get; set; }
         public string TableName { get => "AppConfig"; }
-
+        public SqliteColumnInfo[] Column()
+        {
+            return new SqliteColumnInfo[]
+            { 
+                new SqliteColumnInfo(){ Order = 1, ColumnName = "Id",          Type = SqliteColumnDataTypeEnum.INTEGER, NotNull = true,  PrimaryKey = true,  AutoIncrement = true,  Unique = true,  Defult = "" },
+                new SqliteColumnInfo(){ Order = 2, ColumnName = "Key",         Type = SqliteColumnDataTypeEnum.TEXT,    NotNull = true,  PrimaryKey = false, AutoIncrement = false, Unique = false, Defult = "" },
+                new SqliteColumnInfo(){ Order = 3, ColumnName = "Value",       Type = SqliteColumnDataTypeEnum.TEXT,    NotNull = true,  PrimaryKey = false, AutoIncrement = false, Unique = false, Defult = "" },
+                new SqliteColumnInfo(){ Order = 4, ColumnName = "Description", Type = SqliteColumnDataTypeEnum.TEXT,    NotNull = false, PrimaryKey = false, AutoIncrement = false, Unique = false, Defult = "" }
+            };
+        }
 
         public AppConfigEntity(SqliteDatabaseInfo db)
         {
@@ -65,6 +74,7 @@ namespace FormApp1.Entity
 
         public bool CreateTable()
         {
+            SqliteColumnInfo[] sqliteColumns = this.Column();
             var sql = new System.Text.StringBuilder();
             sql.Append("CREATE TABLE IF NOT EXISTS " + TableName + "( Id INTEGER NOT NULL, Key TEXT NOT NULL, Value TEXT NOT NULL, Description TEXT, PRIMARY KEY(Id) ) ");
             try
@@ -199,5 +209,7 @@ namespace FormApp1.Entity
             }
             return ret;
         }
+
+ 
     }
 }
